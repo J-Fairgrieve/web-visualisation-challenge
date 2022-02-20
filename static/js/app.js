@@ -106,12 +106,12 @@
         var data = [
             {
                 type: "indicator",
-                mode: "gauge+number",
+                mode: "gauge+needle",
                 value: avg,
-                title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
+                title: { text: "Belly Button Washing Frequency"},
                 gauge: {
                     axis: { range: [0, 10]},
-                    bar: { color: "darkgreen" },
+                    bar: { color: "darkgrey" },
                     bgcolor: "white",
                     bordercolor: "gray",
                     steps: [
@@ -125,8 +125,7 @@
             }            
         ];
         var layout = {
-            margin: { t: 50, r: 50, l: 50, b: 50 },
-            font: { color: "darkgreen"}
+            margin: { t: 50, r: 50, l: 50, b: 50 }
         };
         Plotly.newPlot('gauge', data, layout);
     };
