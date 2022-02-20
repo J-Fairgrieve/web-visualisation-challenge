@@ -1,10 +1,7 @@
-/**
- * read the json file using d3
- */
+// read the json file using d3
  let data = d3.json("data/samples.json").then((rawData) => {
-    /**
-     * create var for name and load that data into the <select>
-     */
+
+    // create var for name and load that data into the <select>
     function loadNames(names) {
         for (let i = 0; i < names.length; i++) {
             let opt = document.createElement('option');
@@ -14,10 +11,8 @@
         };
     };
 
-    /**
-     * initial load ins for the page
-     */
-    // load the names into the page.
+    // initial load ins for the page
+    // load the names into the page
     loadNames(rawData.names);
     //load meta-data
     loadMetaData();
@@ -28,9 +23,7 @@
     //load the gauge
     createGauge(document.getElementById('selDataset').value);
 
-    /**
-     * when a name is selected update the page with the new data
-     */
+    // when a name is selected update the page with the new data
     document.getElementById('selDataset').onchange = function optionChanged() {
         // re-load the meta-data
         loadMetaData();
@@ -42,17 +35,12 @@
         createGauge(document.getElementById('selDataset').value);
     };
 
-    /**
-     * Update the meta-data
-     */
+    // Update the meta-data
     function loadMetaData() {
-        /**
-         * locate the selected index
-        * */
+        // locate the selected index
         let index = document.getElementById('selDataset').value;
 
-        // generate key-value pair from the metadata using the index and add it
-        //     to the associated metadata div
+        // generate key-value pair from the metadata using the index and add it to the associated metadata div
         document.getElementById('sample-metadata').innerHTML = "";
         for (const [key, value] of Object.entries(rawData.metadata[index])) {
             let str = document.createElement('h5')
@@ -61,13 +49,9 @@
         };
     };
 
-    /**
-     * Generate hotizontal bar chart
-     */
+    // Generate hotizontal bar chart
     function createBar(index) {
-        /**
-         * find the top ten bacterias in the samples and create the bar chart
-         */
+        // find the top ten bacterias in the samples and create the bar chart
         let sample = rawData.samples[index];
         let xAxis = sample.sample_values;
         let yAxis = [];
@@ -89,13 +73,9 @@
         Plotly.newPlot("bar", hBar, layout);
     };
 
-    /**
-    * create the bubble chart
-    */
+    // create the bubble chart
     function createBubble(index) {
-        /**
-        * create the bubble chart
-        */
+        // create the bubble chart
         let sample = rawData.samples[index];
         let bubble = [{
             x: sample.otu_ids,
@@ -113,13 +93,9 @@
         Plotly.newPlot('bubble', bubble, layout);
     };
 
-    /**
-     * create the gauge
-     */
+    // create the gauge
     function createGauge(index) {
-        /**
-        * create the gauge
-        */
+        // create the gauge
         let sample = rawData.samples[index];
         // value is calculated as the average amount of sample values found / 100
         let sum = 0;
@@ -134,20 +110,16 @@
                 value: avg,
                 title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
                 gauge: {
-                    axis: { range: [0, 9], tickcolor: "darkblue" },
-                    bar: { color: "darkblue" },
+                    axis: { range: [0, 10]},
+                    bar: { color: "darkgreen" },
                     bgcolor: "white",
                     bordercolor: "gray",
                     steps: [
-                        { range: [0, 1], color: "lightgreen" },
-                        { range: [1, 2], color: "yellow" },
-                        { range: [2, 3], color: "yellow" },
-                        { range: [3, 4], color: "yellow" },
-                        { range: [4, 5], color: "yellow" },
-                        { range: [5, 6], color: "yellow" },
-                        { range: [6, 7], color: "yellow" },
-                        { range: [7, 8], color: "yellow" },
-                        { range: [8, 9], color: "red" }
+                        { range: [0, 2], color: "red" },
+                        { range: [2, 4], color: "orange" },
+                        { range: [4, 6], color: "yellow" },
+                        { range: [6, 8], color: "yellowgreen" },
+                        { range: [8, 10], color: "green" }
                     ],
                 }
             }
@@ -157,6 +129,6 @@
             font: { color: "darkblue", family: "Arial" }
         };
 
-        
+
     };
 });
