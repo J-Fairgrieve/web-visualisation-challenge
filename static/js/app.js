@@ -50,10 +50,10 @@
         // Create bar chart
         let hBar = [{
             type: 'bar',
-            x: xAxis.slice(0, 9).reverse(),
-            y: yAxis.slice(0, 9).reverse(),
+            x: xAxis.slice(0, 10).reverse(),
+            y: yAxis.slice(0, 10).reverse(),
             orientation: 'h',
-            text: hoverText.slice(0, 9).reverse()
+            text: hoverText.slice(0, 10).reverse()
         }];
         let layout = {
             showlegend: false
