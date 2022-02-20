@@ -139,9 +139,15 @@
                     bgcolor: "white",
                     bordercolor: "gray",
                     steps: [
-                        { range: [0, 3], color: "lightgreen" },
-                        { range: [3, 6], color: "yellow" },
-                        { range: [6, 9], color: "red" }
+                        { range: [0, 1], color: "lightgreen" },
+                        { range: [1, 2], color: "yellow" },
+                        { range: [2, 3], color: "yellow" },
+                        { range: [3, 4], color: "yellow" },
+                        { range: [4, 5], color: "yellow" },
+                        { range: [5, 6], color: "yellow" },
+                        { range: [6, 7], color: "yellow" },
+                        { range: [7, 8], color: "yellow" },
+                        { range: [8, 9], color: "red" }
                     ],
                 }
             }
@@ -151,13 +157,6 @@
             font: { color: "darkblue", family: "Arial" }
         };
 
-        Plotly.newPlot('gauge', data, layout);
-        if (avg <= 3) {
-            document.getElementById('reading').innerHTML = `You should be scrubbing ${Math.trunc(avg)} times a week. \nThere isn't much of a worry of bacteria!`;
-        } else if (avg > 3 && avg <= 6) {
-            document.getElementById('reading').innerHTML = `You should be scrubbing ${Math.trunc(avg)} times a week. \nThere should be a moderate concern of bacteria!`;
-        } else if (avg > 6) {
-            document.getElementById('reading').innerHTML = `You should be scrubbing ${Math.trunc(avg)} times a week. \nThere is a high amount of bacteria detected! Maintain a healthy amount of cleaning.`;
-        }
+        
     };
 });
