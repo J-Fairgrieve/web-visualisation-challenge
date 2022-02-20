@@ -1,7 +1,6 @@
-// read the json file using d3
- let data = d3.json("data/samples.json").then((rawData) => {
-
-    // create var for name and load that data into the <select>
+// read the json file with d3
+ let data = d3.json("data/samples.json").then((SampleData) => {
+    // create a variable for name and load data
     function loadNames(names) {
         for (let i = 0; i < names.length; i++) {
             let opt = document.createElement('option');
@@ -13,7 +12,7 @@
 
     // initial load ins for the page
     // load the names into the page
-    loadNames(rawData.names);
+    loadNames(SampleData.names);
     //load meta-data
     loadMetaData();
     //create the hbar chart
@@ -42,7 +41,7 @@
 
         // generate key-value pair from the metadata using the index and add it to the associated metadata div
         document.getElementById('sample-metadata').innerHTML = "";
-        for (const [key, value] of Object.entries(rawData.metadata[index])) {
+        for (const [key, value] of Object.entries(SampleData.metadata[index])) {
             let str = document.createElement('h5')
             str.innerHTML = `${key}: ${value}`
             document.getElementById('sample-metadata').appendChild(str);
@@ -52,7 +51,7 @@
     // Generate hotizontal bar chart
     function createBar(index) {
         // find the top ten bacterias in the samples and create the bar chart
-        let sample = rawData.samples[index];
+        let sample = SampleData.samples[index];
         let xAxis = sample.sample_values;
         let yAxis = [];
         let hoverText = sample.otu_labels;
@@ -76,7 +75,7 @@
     // create the bubble chart
     function createBubble(index) {
         // create the bubble chart
-        let sample = rawData.samples[index];
+        let sample = SampleData.samples[index];
         let bubble = [{
             x: sample.otu_ids,
             y: sample.sample_values,
@@ -95,8 +94,7 @@
 
     // create the gauge
     function createGauge(index) {
-        // create the gauge
-        let sample = rawData.samples[index];
+        let sample = SampleData.samples[index];
         // value is calculated as the average amount of sample values found / 100
         let sum = 0;
         for (let i = 0; i < sample.sample_values.length; i++) {
@@ -108,23 +106,24 @@
                 type: "indicator",
                 mode: "gauge+number",
                 value: avg,
-                title: { text: "Belly Button Washing Frequency"},
+                title: {text: "Belly Button Washing Frequency"},
                 gauge: {
-                    axis: { range: [0, 10]},
+                    axis: {range: [0, 10]},
+                    bar: {color: "grey"}
                     bgcolor: "white",
                     bordercolor: "gray",
                     steps: [
-                        { range: [0, 2], color: "red" },
-                        { range: [2, 4], color: "orange" },
-                        { range: [4, 6], color: "yellow" },
-                        { range: [6, 8], color: "yellowgreen" },
-                        { range: [8, 10], color: "green" }
+                        {range: [0, 2], color: "red"},
+                        {range: [2, 4], color: "orange"},
+                        {range: [4, 6], color: "yellow"},
+                        {range: [6, 8], color: "yellowgreen"},
+                        {range: [8, 10], color: "green"}
                     ],
                 }
             }            
         ];
         var layout = {
-            margin: { t: 50, r: 50, l: 50, b: 50 }
+            margin: {t: 50, r: 50, l: 50, b: 50}
         };
         Plotly.newPlot('gauge', data, layout);
     };
