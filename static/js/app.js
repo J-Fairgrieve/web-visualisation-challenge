@@ -122,13 +122,12 @@
                         { range: [8, 10], color: "green" }
                     ],
                 }
-            }
+            }            
         ];
         var layout = {
             margin: { t: 50, r: 50, l: 50, b: 50 },
-            font: { color: "darkblue", family: "Arial" }
+            font: { color: "darkgreen"}
         };
-
-
+        Plotly.newPlot('gauge', data, layout);
     };
 });
