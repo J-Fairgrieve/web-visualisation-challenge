@@ -94,6 +94,7 @@
 
     // create the gauge
     function createGauge(index) {
+
         let sample = sampleData.samples[index];
         // value is calculated as the average amount of sample values found / 100
         let sum = 0;
@@ -108,22 +109,22 @@
                 value: avg,
                 title: {text: "Belly Button Washing Frequency"},
                 gauge: {
-                    axis: {range: [0, 10]},
-                    bar: {color: "gray"}
+                    axis: { range: [0, 10] },
+                    bar: { color: "gray" },
                     bgcolor: "white",
                     bordercolor: "gray",
                     steps: [
-                        {range: [0, 2], color: "red"},
-                        {range: [2, 4], color: "orange"},
-                        {range: [4, 6], color: "yellow"},
-                        {range: [6, 8], color: "yellowgreen"},
-                        {range: [8, 10], color: "green"}
+                        { range: [0, 2], color: "red" },
+                        { range: [2, 4], color: "orange" },
+                        { range: [4, 6], color: "yellow" },
+                        { range: [6, 8], color: "yellowgreen" },
+                        { range: [8, 10], color: "green" }
                     ],
                 }
             }            
         ];
         var layout = {
-            margin: {t: 50, r: 50, l: 50, b: 50}
+            margin: { t: 50, r: 50, l: 50, b: 50 }
         };
         Plotly.newPlot('gauge', data, layout);
     };
