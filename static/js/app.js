@@ -106,12 +106,11 @@
         var data = [
             {
                 type: "indicator",
-                mode: "gauge+needle",
+                mode: "gauge+number",
                 value: avg,
                 title: { text: "Belly Button Washing Frequency"},
                 gauge: {
                     axis: { range: [0, 10]},
-                    bar: { color: "darkgrey" },
                     bgcolor: "white",
                     bordercolor: "gray",
                     steps: [
