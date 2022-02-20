@@ -1,5 +1,5 @@
 // read the json file with d3
- let data = d3.json("data/samples.json").then((SampleData) => {
+ let data = d3.json("data/samples.json").then((sampleData) => {
     // create a variable for name and load data
     function loadNames(names) {
         for (let i = 0; i < names.length; i++) {
@@ -12,7 +12,7 @@
 
     // initial load ins for the page
     // load the names into the page
-    loadNames(SampleData.names);
+    loadNames(sampleData.names);
     //load meta-data
     loadMetaData();
     //create the hbar chart
@@ -41,7 +41,7 @@
 
         // generate key-value pair from the metadata using the index and add it to the associated metadata div
         document.getElementById('sample-metadata').innerHTML = "";
-        for (const [key, value] of Object.entries(SampleData.metadata[index])) {
+        for (const [key, value] of Object.entries(sampleData.metadata[index])) {
             let str = document.createElement('h5')
             str.innerHTML = `${key}: ${value}`
             document.getElementById('sample-metadata').appendChild(str);
@@ -51,7 +51,7 @@
     // Generate hotizontal bar chart
     function createBar(index) {
         // find the top ten bacterias in the samples and create the bar chart
-        let sample = SampleData.samples[index];
+        let sample = sampleData.samples[index];
         let xAxis = sample.sample_values;
         let yAxis = [];
         let hoverText = sample.otu_labels;
@@ -75,7 +75,7 @@
     // create the bubble chart
     function createBubble(index) {
         // create the bubble chart
-        let sample = SampleData.samples[index];
+        let sample = sampleData.samples[index];
         let bubble = [{
             x: sample.otu_ids,
             y: sample.sample_values,
@@ -94,7 +94,7 @@
 
     // create the gauge
     function createGauge(index) {
-        let sample = SampleData.samples[index];
+        let sample = sampleData.samples[index];
         // value is calculated as the average amount of sample values found / 100
         let sum = 0;
         for (let i = 0; i < sample.sample_values.length; i++) {
@@ -109,7 +109,7 @@
                 title: {text: "Belly Button Washing Frequency"},
                 gauge: {
                     axis: {range: [0, 10]},
-                    bar: {color: "grey"}
+                    bar: {color: "gray"}
                     bgcolor: "white",
                     bordercolor: "gray",
                     steps: [
