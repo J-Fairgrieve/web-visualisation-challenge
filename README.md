@@ -6,3 +6,5 @@ The challenge creates the following graphs/visualisations using javascript:
  - Bubble Chart
  - Metadata Table
  - Gauge Chart
+
+You can access the dashboard [here](https://j-fairgrieve.github.io/web-visualisation-challenge/)
